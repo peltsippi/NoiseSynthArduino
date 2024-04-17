@@ -61,3 +61,12 @@ CPPUTEST_EXE_FLAGS += -c
 
 
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk
+
+
+clean: 
+	
+	if [ -f Noisesynth_tests ]; then rm Noisesynth_tests; fi;
+
+	if [ -d ./test-lib/ ]; then rm -r ./test-lib/; fi;
+	
+	if [ -d ./test-obj/ ]; then rm -r ./test-obj/; fi;
