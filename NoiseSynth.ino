@@ -1,8 +1,33 @@
 #include <Tone.h>
 
-byte columns[] = {34, 36, 38, 40, 42, 44, 46, 48};
-byte rows[] = {22, 24, 26, 28, 30, 32};
-byte tonePins[] = {9, 2, 6}; //pwm pins for tone output
+//byte columns[] = {34, 36, 38, 40, 42, 44, 46, 48};
+//byte rows[] = {22, 24, 26, 28, 30, 32};
+
+//const byte columns[] = {35, 37, 39, 41, 43, 45, 47, 49};
+//const byte rows[] = {23, 25, 27, 29, 31, 33 };
+
+//const byte rows[] = {37, 35, 33, 31, 29, 27};
+
+//const byte columns[] = {53, 51, 49, 47, 45, 43, 41, 39};
+
+const byte leds[] {38, 40, 42};
+
+//byte rows[] = {53, 51, 49, 47, 45, 43};
+
+//const byte rows[] = {43, 45, 47, 49, 51, 53};
+const byte rows[] = {53, 51, 49, 47, 45, 43};
+const byte columns[] = {41, 39, 37, 35, 33, 31, 29, 27 };
+//const byte columns[] = {27, 29, 31, 33, 35, 37, 39, 41 };
+
+
+
+//const byte buttonRows[] = { 22, 24, 26, 28, 30, 32, 34, 36};
+//const byte buttonColumns[] = {44, 46, 48, 50};
+//these work 100%!!
+
+
+byte tonePins[] = {2, 9, 6}; //pwm pins for tone output 2/6/9. 6 wired to other pot.
+//byte thirdSound = 6;
 //it seems that 4th tone is just not working.
 // polyphone of 3 is good enouhg!
 
@@ -13,6 +38,9 @@ Tone tone3;
 
 //Tone *tones[4] = {&tone1, &tone2, &tone3, &tone4};
 Tone *tones[3] = {&tone1, &tone2, &tone3};
+
+//Tone *tones[2] = {&tone1, &tone2};
+
 
 struct Playing {
   int key_id;
@@ -26,6 +54,8 @@ Playing T3;
 
 //Playing *sound[4] = {&T1, &T2, &T3, &T4};
 Playing *sound[3] = {&T1, &T2, &T3};
+//Playing *sound[2] = {&T1, &T2};
+
 
 int freqChart[] = {
 0,0,0,0,437, 463, 
@@ -96,7 +126,14 @@ update: software bug, got rows & columns messed up...
 const int rowCount = sizeof(rows) / sizeof(rows[0]);
 const int colCount = sizeof(columns) / sizeof(columns[0]);
 
+const int ledCount = sizeof(leds) / sizeof(leds[0]);
+
 const int toneCount = sizeof(tonePins) / sizeof(tonePins[0]);
+
+const byte buttonRows[] = { 22, 24, 26, 28, 30, 32, 34, 36};
+const byte buttonColumns[] = {44, 46, 48, 50};
+const int buttonRowCount = sizeof(buttonRows) / sizeof(buttonRows[0]);
+const int buttonColumnCount = sizeof(buttonColumns) / sizeof(buttonColumns[0]);
 
 byte keyMap[colCount][rowCount] = {0};
 
@@ -107,16 +144,25 @@ void setup() {
   //for (int i = 0; i < sizeof(tonePins) / sizeof(tonepins[0])) {
 
   //}
-  for (int i = 0; i < toneCount; i++) {
+  for (int i = 0; i < ledCount; i++) {
+    pinMode(leds[i], OUTPUT);
+    Serial.print("Setting led ");
+    Serial.print(i+1);
+    Serial.println(" off");
+    digitalWrite(leds[i], HIGH);
+  }
+
+  /*for (int i = 0; i < toneCount; i++) {
     Serial.print("Enabling tone ");
     tones[i]->begin(tonePins[i]);
     Serial.print(i+1);
     Serial.print(" at pin ");
     Serial.println(tonePins[i]);
-  }
-  //tone1.begin(tonePins[0]);
-  //tone2.begin(tonePins[1]);
-  //tone3.begin(tonePins[2]);
+  }*/
+  tone1.begin(tonePins[0]);
+  tone2.begin(tonePins[1]);
+  tone3.begin(tonePins[2]);
+  //tone3.begin(thirdSound);
   //tone4.begin(tonePins[3]);
 
   for (int i = 0; i < rowCount; i++) {
@@ -125,6 +171,16 @@ void setup() {
     pinMode(rows[i], INPUT_PULLUP);
   }
 
+  for (int i = 0; i< buttonRowCount; i++) {
+    Serial.print(buttonRows[i]);
+    Serial.println(" as input_pullup");
+    pinMode(buttonRows[i], INPUT_PULLUP);
+  }
+
+//const int buttonRowCount = sizeof(buttonRows) / sizeof(buttonRows[0]);
+//const int buttonColumnCount = sizeof(buttonColumns) / sizeof(buttonColumns[0]);
+
+
   for (int i = 0; i < colCount; i++) {
     Serial.print(columns[i]);
     Serial.println(" as output_high");
@@ -132,9 +188,17 @@ void setup() {
     digitalWrite(columns[i], HIGH);
   }
 
+  for (int i = 0; i < buttonColumnCount; i ++) {
+    Serial.print(buttonColumns[i]);
+    Serial.print(" as output_high");
+    pinMode(buttonColumns[i], OUTPUT);
+    digitalWrite(buttonColumns[i], HIGH);
+  }
+
  //   Serial.println("Column - Row1, Row2, Row3,... ");
 
 }
+
 
 void PrintMatrix() {
   Serial.println("--------------------------");
@@ -154,7 +218,7 @@ void PrintMatrix() {
 
     
   }
-  delay(1000);
+  //delay(1000);
 }
 
 int GetFirstFreeTone() {
@@ -299,10 +363,32 @@ void ReadMatrix() {
 }
 
 void loop() {
+
+
   ReadMatrix();
+  //PrintMatrix();
+  //delay(500);
+  //PlayTone(1, 20);
+  //ReadMatrix();
   CheckReleasedKeys();
   ProcessTones();
+  //tone3.play(100);
+  //PlayTone(2, 10);
+  //sound[soundNumber]->enabled = true;
+  //sound[soundNumber]->key_id = keyValue;
+  //int toneFreq = freqChart[keyValue];
+  //toneFreq = toneFreq / 10;
+  //tones[soundNumber]->play(toneFreq);
+
+  
   //PlayMatrix(); //this gave pretty wild sound effects...
   //PrintMatrix();
+  //digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+  //digitalWrite(38, !digitalRead(38));
+  //digitalWrite(40, !digitalRead(40));
+  //digitalWrite(42, !digitalRead(42));
+  
+  //delay(1000);
 
 }
+
