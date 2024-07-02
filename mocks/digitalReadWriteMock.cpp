@@ -17,13 +17,19 @@ void digitalReadWriteMock_Create(int arr_size) {
     //fakeReadingArray = &copyArray[0];
     int digitalReadArray[arr_size] = {0};
     fakeReadingArray = &digitalReadArray[0];
+    fakeReadingArraySize = arr_size;
+
 }
 
 void digitalReadWriteMock_Destroy() {
-    
+    fakeReadingArraySize = 0;
+    //delete[] fakeReadingArray;
 
 }
 
+int arraySize() {
+    return fakeReadingArraySize;
+}
 
 int digitalRead(int pin) {
     return fakeReadingArray[pin];

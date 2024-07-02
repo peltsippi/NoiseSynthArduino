@@ -9,4 +9,6 @@ int digitalRead(int pin);
 
 int digitalWrite(int pin, int value);
 
+int arraySize();
+
 #endif
