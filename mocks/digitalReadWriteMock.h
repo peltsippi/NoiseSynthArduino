@@ -13,6 +13,5 @@ int digitalRead(int pin);
 void __decoy_digitalWrite(int writePin, int value);
 
 int arraySize();
-int* arrayDump();
 
 #endif

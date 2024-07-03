@@ -24,15 +24,12 @@ void digitalReadWriteMock_Destroy() {
     
     free(fakeReadingArray);
     fakeReadingArraySize = 0;
+    fakeReadingArray = NULL; //just to ensure the pointer reference later on causes crashes and makes any issues to surface
 
 }
 
 int arraySize() {
     return fakeReadingArraySize;
-}
-
-int* arrayDump() {
-    return &fakeReadingArray[0];
 }
 
 int digitalRead(int pin) {
