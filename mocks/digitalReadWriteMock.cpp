@@ -37,25 +37,22 @@ int* arrayDump() {
 
 int digitalRead(int pin) {
     if (fakeReadingArraySize >= pin &&  pin > 0) {
-    
-    if (fakeReadingArray[pin - 1] < 0 || fakeReadingArray[pin-1] > 1) {
-        return pin;
-    }
-    return fakeReadingArray[pin - 1];
-
+        return fakeReadingArray[pin - 1];
     }
     return 0;
-    //return 5;
 }
 
 void __decoy_digitalWrite(int writePin, int value) {
-
+    if (value > 1) {
+        value = 1;
+    }
+    if (value < 0) {
+        value = 0;
+    }
     if (writePin <= fakeReadingArraySize) {
 
     fakeReadingArray[writePin - 1 ] = value;
 
     }
-
-    //return 1;
 
 }
