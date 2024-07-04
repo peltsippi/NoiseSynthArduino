@@ -1,4 +1,7 @@
 #include <Tone.h>
+#include "include/DetectKeys.h"
+#include "include/DetectSettings.h"
+
 
 //byte columns[] = {34, 36, 38, 40, 42, 44, 46, 48};
 //byte rows[] = {22, 24, 26, 28, 30, 32};

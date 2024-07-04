@@ -9,3 +9,5 @@ Pet project to practive TDD with arduino stuff.
 
 Based on really good book: 
 * [Get Your Legacy C into a Test Harness](https://wingman-sw.com/articles/tdd-legacy-c)
+
+Gradually writing tests etc and separating different things to different modules.
