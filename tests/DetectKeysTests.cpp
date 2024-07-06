@@ -1,5 +1,5 @@
 #include "CppUTest/TestHarness.h"
-#include "DetectKeys.h"
+#include "../include/DetectKeys.h"
 
 /* 
 This blob is for detecting keyboard keys

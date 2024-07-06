@@ -1,5 +1,9 @@
 #include "CppUTest/TestHarness.h"
 #include "digitalReadWriteMock.h"
+//#include "/home/timo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Arduino.h"
+
+#define digitalRead(a) FakedigitalRead(a)
+#define digitalWrite(a,b) FakedigitalWrite(a,b)
 
 
 int io_count = 54;
@@ -10,6 +14,8 @@ TEST_GROUP(digitalReadWriteMock)
     void setup()
     {
         digitalReadWriteMock_Create(io_count); 
+        //UT_PTR_SET(digitalRead, FakedigitalRead);
+        //UT_PTR_SET(digitalWrite, FakedigitalWrite);
     }
 
     void teardown()
@@ -36,7 +42,7 @@ TEST(digitalReadWriteMock, init) {
     }
 
     CHECK_EQUAL(LOW, digitalRead(5));
-    __decoy_digitalWrite(5,HIGH);
+    digitalWrite(5,HIGH);
     CHECK_EQUAL(HIGH, digitalRead(5));
     for (int i = 1; i <= io_count; i++) {
         if (i != 5) {
@@ -45,11 +51,11 @@ TEST(digitalReadWriteMock, init) {
     }
 
     //writing above io_count to ensure there is nothing catastrophical happeningn
-    __decoy_digitalWrite(io_count + 5, HIGH); 
+    digitalWrite(io_count + 5, HIGH); 
 
     //write excessive numbers to digital input
-    __decoy_digitalWrite(10, 100); 
+    digitalWrite(10, 100); 
     CHECK_EQUAL(HIGH, digitalRead(10));
-    __decoy_digitalWrite(14, -100);
+    digitalWrite(14, -100);
     CHECK_EQUAL(LOW, digitalRead(14));
 }

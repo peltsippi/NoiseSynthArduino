@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+
 //int *fakeReadingArray = malloc(int[]);
 //int *fakeReadingArray;
 int* fakeReadingArray = (int*) calloc(1,sizeof(int[0]));
@@ -32,14 +34,14 @@ int arraySize() {
     return fakeReadingArraySize;
 }
 
-int digitalRead(int pin) {
+int FakedigitalRead(int pin) {
     if (fakeReadingArraySize >= pin &&  pin > 0) {
         return fakeReadingArray[pin - 1];
     }
     return 0;
 }
 
-void __decoy_digitalWrite(int writePin, int value) {
+void FakedigitalWrite(int writePin, int value) {
     if (value > 1) {
         value = 1;
     }
