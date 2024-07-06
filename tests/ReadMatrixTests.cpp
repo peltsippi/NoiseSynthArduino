@@ -1,13 +1,23 @@
 #include "CppUTest/TestHarness.h"
-#include "ReadMatrix.h"
-#include "digitalReadWriteMock.h"
+#include "../include/ReadMatrix.h"
+#include "../mocks/digitalReadWriteMock.h"
 
-#define digitalRead(a) FakedigitalRead(a);
-#define digitalWrite(a,b) FakedigitalWrite(a,b);
+#define digitalRead(a) FakedigitalRead(a)
+#define digitalWrite(a,b) FakedigitalWrite(a,b)
 
 /* 
-This blob is for reading input matrixes
+Testing logic:
 
+Initially everything sets to 1 (this is being handled correctly by the hardware normally)
+
+Flipping intentionally one IO does not affect others
+HIGH means not detected and LOW means detected
+This might be really tricky, it needs to be hooked up somehow during function execution?!?
+
+Output makes sense somehow
+Output is absolutely correct
+
+What else?
 
 */
 //int io_count = 54;
@@ -22,16 +32,14 @@ TEST_GROUP(ReadMatrix)
     void setup()
     {
         digitalReadWriteMock_Create(54);
-        //UT_PTR_SET(digitalRead, FakedigitalRead);
-        //UT_PTR_SET(digitalWrite, FakedigitalWrite);
+        
         //mode: input pullup. So default reading is 1 for everything
         for (int i = 0; i < rowCount; i++) {
-            digitalWrite(rows[i], 1);
-
+            digitalWrite(rows[i], HIGH);
         }
 
         for (int i = 0; i < colCount; i++) {
-
+            digitalWrite(cols[i], HIGH);
         }
         
     }
@@ -44,7 +52,21 @@ TEST_GROUP(ReadMatrix)
     }
 };
 
-TEST(ReadMatrix, something)
+TEST(ReadMatrix, init_ok)
 {
+    for (int i = 0; i < rowCount; i++) {
+        CHECK_EQUAL(HIGH, digitalRead(rows[i]));
+        CHECK_EQUAL(HIGH, digitalRead(cols[i]));
+    }
     //DOUBLES_EQUAL(10, GetdBValue(600,10,10),1);
+}
+
+TEST(ReadMatrix, OutputArray) {
+    int *arr[rowCount][colCount] = ReadMatrix(rowCount, rows, colCount, cols);
+
+    for (int i = 0; i < rowCount; i++) {
+        for (int j= 0; j < colCount; j++ ) {
+            CHECK_EQUAL(HIGH, arr[i][j]);
+        }
+    }
 }

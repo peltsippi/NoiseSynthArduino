@@ -1,5 +1,7 @@
-int* ReadMatrix(int rowCount, int* rowList[], int colCount, int* colList[]) {
+int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
     int keyArray[rowCount][colCount] = {0};
+
+    return *keyArray;
 
 
 
