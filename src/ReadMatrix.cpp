@@ -1,7 +1,13 @@
-int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
-    int keyArray[rowCount][colCount] = {0};
+//#include "../include/ReadMatrix.h"
 
-    return *keyArray;
+
+int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
+    //int keyArray[rowCount][colCount] = {0};
+    //int keyArray[rowCount];
+    //return keyArray;
+    
+    //what if here is just an array of buttons pressed altogether?
+    
 
 
 
