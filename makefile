@@ -15,13 +15,8 @@ TEST_SRC_DIRS += tests
 
 MOCKS_SRC_DIRS += mocks
 
-SRC_DIR = /src
-
-SRC_FILES = DetectKeys.cpp \
-			DetectSettings.cpp \
-			ReadMatrix.cpp
-
-OBJ=        $($(addprefix $(SRC_DIR), $(SRC_FILES)):.c=.o)
+SRC_FILES += src/ReadMatrix.c
+SRC_DIRS += src
 
 CPPUTEST_USE_EXTENSIONS = Y
 

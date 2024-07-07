@@ -1,6 +1,10 @@
 //#include "../include/ReadMatrix.h"
 
 
+int testfunc(int numb) {
+  return numb;
+}
+
 int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
     
     int *arr = (int*) malloc(sizeof(int[rowCount][colCount]));
