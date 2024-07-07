@@ -62,13 +62,34 @@ TEST(ReadMatrix, init_ok)
     for (int i = 0; i < colCount; i++) {
          CHECK_EQUAL(HIGH, digitalRead(cols[i]));
     }
-    CHECK_EQUAL(HIGH, testfunc(1));
 
     //DOUBLES_EQUAL(10, GetdBValue(600,10,10),1);
 }
 
 
-//TEST(ReadMatrix, OutputArray) {
+TEST(ReadMatrix, OutputArrayAfterInit) {
+
+     //let's just use 1d array instead! arr[999]
+    //referenced by arr[colNumber * rowCount + rowNumber] ?!?!
+    int* arrPtr = ReadMatrix(rowCount, rows, colCount, cols);
+
+    for (int i = 0; i < rowCount; i++) {
+        for (int j = 0; j < colCount; j++) {
+            if (i != j) { //when working correctly this probably works like this or not?!?
+                CHECK_EQUAL(1, arrPtr[j*rowCount + i]);
+            }
+        }
+
+    }
+    
+
+}
+
+TEST(ReadMatrix, manipulated) {
+
+    //column set to low -> there should be only single zero in whole array if there is no input
+
+}
 
     /*int* ptr = ReadMatrix(rowCount, rows, colCount, cols);
 
@@ -108,4 +129,4 @@ TEST(ReadMatrix, init_ok)
    //int num = TestMatrix(rowCount, rows, colCount, cols);
    //CHECK_EQUAL(50, TestMatrix(rowCount, rows, colCount, cols));
    
-//}
+//

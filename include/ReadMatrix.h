@@ -3,6 +3,4 @@
 
 int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]);
 
-int testfunc(int number);
-
 #endif
