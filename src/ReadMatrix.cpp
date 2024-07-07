@@ -2,11 +2,19 @@
 
 
 int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
+    
+    int *arr = (int*) malloc(sizeof(int[rowCount][colCount]));
+
+    return (int*) arr;
+    
     //int keyArray[rowCount][colCount] = {0};
     //int keyArray[rowCount];
-    //return keyArray;
+    //return (int**) keyArray;
     
     //what if here is just an array of buttons pressed altogether?
+    //nope, not going to work at all! makes everything too complex!
+    //let's just use 1d array instead! arr[999]
+    //referenced by arr[colNumber * rowCount + rowNumber] ?!?!
     
 
 

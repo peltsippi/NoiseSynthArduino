@@ -15,11 +15,20 @@ TEST_SRC_DIRS += tests
 
 MOCKS_SRC_DIRS += mocks
 
+SRC_DIR = /src
+
+SRC_FILES = DetectKeys.cpp \
+			DetectSettings.cpp \
+			ReadMatrix.cpp
+
+OBJ=        $($(addprefix $(SRC_DIR), $(SRC_FILES)):.c=.o)
+
 CPPUTEST_USE_EXTENSIONS = Y
 
 INCLUDE_DIRS += $(CPPUTEST_HOME)/include
 INCLUDE_DIRS += $(CPPUTEST_HOME)/include/Platforms/Gcc
 INCLUDE_DIRS += include
+
 
 CPPUTEST_OBJS_DIR = test-obj
 

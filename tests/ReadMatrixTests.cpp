@@ -1,6 +1,5 @@
 #include "CppUTest/TestHarness.h"
 #include "../include/ReadMatrix.h"
-//#include "../include/ReadMatrix.h"
 #include "../mocks/digitalReadWriteMock.h"
 
 #define digitalRead(a) FakedigitalRead(a)
@@ -69,8 +68,30 @@ TEST(ReadMatrix, init_ok)
 
 TEST(ReadMatrix, OutputArray) {
 
-    //int *testArr[rowCount] = ReadMatrix(rowCount, rows, colCount, cols);
+    int* ptr = ReadMatrix(rowCount, rows, colCount, cols);
 
+    for (int j = 0; j < colCount; j++) {
+        for (int i = 0; i < rowCount; i++) {
+            CHECK_EQUAL(HIGH, ptr[i + j * rowCount]);
+        }
+    }
+
+    //int **testArr = ReadMatrix(rowCount, rows, colCount, cols);
+    //int *ptr[rowCount][colCount]
+    //ptr = &testArr;
+    //ptr = (int*) testArr;
+
+    //CHECK_EQUAL(HIGH, *ptr);
+
+    //int *testArr[rowCount] = ReadMatrix(rowCount, rows, colCount, cols);
+    //int *testArr[rowCount][colCount];
+    //testArr = ReadMatrix(rowCount, rows, colCount, cols);
+
+    /*for (int i = 0; i < rowCount; i++) {
+        for (int j = 0; j < colCount; j++) {
+            CHECK_EQUAL(HIGH, testArr[i][j]);
+        }
+    }*/
     
     /*int *arr[rowCount][colCount] = ReadMatrix(rowCount, rows, colCount, cols);
 
