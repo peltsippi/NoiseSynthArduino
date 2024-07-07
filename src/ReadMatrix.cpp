@@ -1,10 +1,27 @@
 //#include "../include/ReadMatrix.h"
+//#include "Arduino.h"
 
-int* ReadMatrix(int rowCount, int rowList[], int colCount, int colList[]) {
+void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colList[]) {
     
-    int *arr = (int*) malloc(sizeof(int[rowCount][colCount]));
 
-    return (int*) arr;
+  for (int col = 0; col < colCount; col++) {
+    digitalWrite(colList[col], 0);
+    delay(20);
+    for (int row = 0; row < rowCount, row++) {
+      ptr[col * row + row] = digitalRead(rowList[row]);
+    }
+    digitalWrite(colList[col], 1);
+
+  }
+    //if (&ptr != NULL) {
+    //  done = true;
+    //}
+    //int *arr = (int*) malloc(sizeof(int[rowCount*colCount]));
+    
+
+    //int arr[rowCount*colCount] = { 0 };
+
+    
     
     //int keyArray[rowCount][colCount] = {0};
     //int keyArray[rowCount];
