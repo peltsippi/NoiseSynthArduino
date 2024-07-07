@@ -4,6 +4,7 @@
 
 #define digitalRead(a) FakedigitalRead(a)
 #define digitalWrite(a,b) FakedigitalWrite(a,b)
+#define delay(a) FakeDelay(a);
 
 /* 
 Testing logic:
@@ -31,6 +32,8 @@ const int colCount = sizeof(cols) / sizeof(cols[0]);
 
 const int arrSize = rowCount * colCount;
 int readArray[arrSize] = {0};
+
+void FakeDelay(int a) {}
 
 TEST_GROUP(ReadMatrix)
 {

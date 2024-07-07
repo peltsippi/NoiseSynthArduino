@@ -6,11 +6,12 @@ void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colLis
 
   for (int col = 0; col < colCount; col++) {
     digitalWrite(colList[col], 0);
-    delay(20);
-    for (int row = 0; row < rowCount, row++) {
-      ptr[col * row + row] = digitalRead(rowList[row]);
+    //delay(20);
+    for (int row = 0; row < rowCount; row++) {
+      //ptr[col * row + row] = digitalRead(rowList[row]);
+      ptr[col * row + row] = 1;
     }
-    digitalWrite(colList[col], 1);
+    //digitalWrite(colList[col], 1);
 
   }
     //if (&ptr != NULL) {

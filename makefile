@@ -14,8 +14,9 @@ endif
 TEST_SRC_DIRS += tests
 
 MOCKS_SRC_DIRS += mocks
+#MOCKS_SRC_FILES += digitalReadWriteMock.cpp
 
-SRC_FILES += src/ReadMatrix.c
+#SRC_FILES += src/ReadMatrix.cpp
 SRC_DIRS += src
 
 CPPUTEST_USE_EXTENSIONS = Y
