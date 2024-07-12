@@ -1,4 +1,5 @@
 #include "../include/ReadMatrix.h"
+#include "../include/Arduino.h"
 #include "../mocks/digitalReadWriteMock.h"
 #include "CppUTest/TestHarness.h"
 
@@ -33,7 +34,7 @@ const int colCount = sizeof(cols) / sizeof(cols[0]);
 const int arrSize = rowCount * colCount;
 int readArray[arrSize] = {0};
 
-void FakeDelay(int a) {}
+void FakeDelay(int a) {} //this probably needs clock mock or similar at some point?!
 
 TEST_GROUP(ReadMatrix)
 {

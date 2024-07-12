@@ -1,9 +1,10 @@
 #ifndef DigitalReadWriteMock_H
 #define DigitalReadWriteMock_H
 
+#include "../include/Arduino.h"
 
-#define HIGH 1
-#define LOW 0
+//#define HIGH 1
+//#define LOW 0
 
 void digitalReadWriteMock_Create(int arr_size);
 

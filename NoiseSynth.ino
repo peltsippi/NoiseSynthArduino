@@ -1,6 +1,7 @@
 #include <Tone.h>
-#include "include/DetectKeys.h"
-#include "include/DetectSettings.h"
+//#include "include/DetectKeys.h"
+//#include "include/DetectSettings.h"
+#include "include/ReadMatrix.h"
 
 
 //byte columns[] = {34, 36, 38, 40, 42, 44, 46, 48};
