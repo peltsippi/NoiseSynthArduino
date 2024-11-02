@@ -10,15 +10,22 @@
 
 void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colList[]) {
     
+  /*
+  How this works?
+  First everything is set up as input_pullup (everything is 1)
+  Then a column is switched to 0
+  And all rows read to see if something changes to 0 -> button pressed
+  
+  */
 
   for (int col = 0; col < colCount; col++) {
-    digitalWrite(colList[col], 0);
+    digitalWrite(colList[col], 0); //writing column low in order to read input_pullup
     //delay(20);
     for (int row = 0; row < rowCount; row++) {
-      //ptr[col * row + row] = digitalRead(rowList[row]);
-      ptr[col * row + row] = 1;
+      ptr[col * rowCount + row] = digitalRead(rowList[row]);
+      //ptr[col * rowCount + row] = 1;
     }
-    //digitalWrite(colList[col], 1);
+    digitalWrite(colList[col], 1); //setting it back up
 
   }
     //if (&ptr != NULL) {

@@ -95,6 +95,11 @@ TEST(ReadMatrix, OutputArrayAfterInit) {
     //init();
     //int* arrPtr = ReadMatrix(rowCount, rows, colCount, cols);
 
+    //int readArray[arrSize] = {0};
+    //init();
+    //int testArray[arrSize] = {0};
+    init();
+
     ReadMatrix(readArray, rowCount, rows, colCount, cols);
 
     for (int i = 0; i < rowCount; i++) {
@@ -108,7 +113,7 @@ TEST(ReadMatrix, OutputArrayAfterInit) {
 
 }
 
-TEST(ReadMatrix, manipulated) {
+TEST(ReadMatrix, manipulated1) {
 
         /*
     No way thins can be comprehended without this table. One col at a time
@@ -143,9 +148,11 @@ TEST(ReadMatrix, manipulated) {
         CHECK_EQUAL(value, readArray[index]);
     }
     }
+}
 
+    TEST(ReadMatrix, manipulated2) {
     init();
-    selectedRow = 6; //next row and continue
+    int selectedRow = 6; //next row and continue
     selectedRow--; 
     digitalWrite(rows[selectedRow], LOW);
 
