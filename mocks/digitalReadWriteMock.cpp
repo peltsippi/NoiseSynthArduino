@@ -34,14 +34,14 @@ int arraySize() {
     return fakeReadingArraySize;
 }
 
-int FakedigitalRead(int pin) {
+int digitalRead(int pin) {
     if (fakeReadingArraySize >= pin &&  pin > 0) {
         return fakeReadingArray[pin - 1];
     }
     return 0;
 }
 
-void FakedigitalWrite(int writePin, int value) {
+void digitalWrite(int writePin, int value) {
     if (value > 1) {
         value = 1;
     }
@@ -50,7 +50,7 @@ void FakedigitalWrite(int writePin, int value) {
     }
     if (writePin <= fakeReadingArraySize) {
 
-    fakeReadingArray[writePin - 1 ] = value;
+    fakeReadingArray[writePin - 1] = value;
 
     }
 

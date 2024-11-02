@@ -2,8 +2,8 @@
 #include "digitalReadWriteMock.h"
 //#include "/home/timo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Arduino.h"
 
-#define digitalRead(a) FakedigitalRead(a)
-#define digitalWrite(a,b) FakedigitalWrite(a,b)
+//#define digitalRead(a) FakedigitalRead(a)
+//#define digitalWrite(a,b) FakedigitalWrite(a,b)
 
 
 int io_count = 54;

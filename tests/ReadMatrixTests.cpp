@@ -1,11 +1,11 @@
 #include "../include/ReadMatrix.h"
-#include "../include/Arduino.h"
+//#include "../mocks/Arduino.h"
 #include "../mocks/digitalReadWriteMock.h"
 #include "CppUTest/TestHarness.h"
 
-#define digitalRead(a) FakedigitalRead(a)
-#define digitalWrite(a,b) FakedigitalWrite(a,b)
-#define delay(a) FakeDelay(a);
+//#define digitalRead(a) FakedigitalRead(a)
+//#define digitalWrite(a,b) FakedigitalWrite(a,b)
+//#define delay(a) FakeDelay(a);
 
 /* 
 Testing logic:
@@ -34,7 +34,7 @@ const int colCount = sizeof(cols) / sizeof(cols[0]);
 const int arrSize = rowCount * colCount;
 int readArray[arrSize] = {0};
 
-void FakeDelay(int a) {} //this probably needs clock mock or similar at some point?!
+//void Delay(int a) {} //this probably needs clock mock or similar at some point?!
 
 TEST_GROUP(ReadMatrix)
 {

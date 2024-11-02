@@ -1,7 +1,12 @@
 //#include "../include/ReadMatrix.h"
 //#include "Arduino.h"
 //#include "/home/timo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino/Arduino.h"
-#include "../include/Arduino.h"
+//#include "../include/Arduino.h"
+
+
+#ifdef UNIT_TEST
+    #include "../mocks/digitalReadWriteMock.h"
+#endif
 
 void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colList[]) {
     

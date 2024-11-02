@@ -57,14 +57,15 @@ CPPUTEST_CXXFLAGS += --std=c++11
 CPPUTEST_CXXFLAGS += -Wno-c++98-compat-pedantic
 CPPUTEST_CXXFLAGS += -Wno-c++98-compat
 
+
+CPPUTEST_CXXFLAGS += -DUNIT_TEST # adding cxxflag to execute replacement of mock Arduino.h
+
 # Coloroze output
 CPPUTEST_EXE_FLAGS += -c
 
 # --- LD_LIBRARIES -- Additional needed libraries can be added here.
 # commented out example specifies math library
 #LD_LIBRARIES += -lm
-#LD_LIBRARIES += /home/timo/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/arduino
-#LD_LIBRARIES += /home/timo/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino7/avr/include
 
 
 
