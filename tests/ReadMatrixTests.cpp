@@ -100,8 +100,9 @@ TEST(ReadMatrix, OutputArrayAfterInit) {
     //int testArray[arrSize] = {0};
     init();
 
-    ReadMatrix(readArray, rowCount, rows, colCount, cols);
+    bool testVar = ReadMatrix(readArray, rowCount, rows, colCount, cols);
 
+    CHECK_EQUAL(HIGH, testVar);
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < colCount; j++) {
             int index = j*rowCount + i;
@@ -171,6 +172,14 @@ TEST(ReadMatrix, manipulated1) {
 
 
 }
+
+
+    TEST(Readmatrix, read_instrument) {
+        init();
+        //todo: add here correct pins etc to ensure that this check is ok
+        //and something else also
+        //this part is to read slide switch and see which instrument is selected
+    }
 
     /*int* ptr = ReadMatrix(rowCount, rows, colCount, cols);
 

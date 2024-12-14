@@ -8,7 +8,8 @@
     #include "../mocks/digitalReadWriteMock.h"
 #endif
 
-void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colList[]) {
+
+bool ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colList[]) {
     
   /*
   How this works?
@@ -28,6 +29,9 @@ void ReadMatrix(int ptr[], int rowCount, int rowList[], int colCount, int colLis
     digitalWrite(colList[col], 1); //setting it back up
 
   }
+
+
+    return HIGH;
     //if (&ptr != NULL) {
     //  done = true;
     //}
